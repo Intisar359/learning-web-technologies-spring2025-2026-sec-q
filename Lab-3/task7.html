@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="profileForm">
+    <fieldset style="width: 350px;">
+        <legend>Profile Picture</legend>
+        <table>
+            <tr>
+                <td>User Id</td>
+                <td><input type="text" id="userid" name="userid"></td>
+            </tr>
+            <tr>
+                <td>Picture</td>
+                <td><input type="file" id="pic" name="pic"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<script>
+document.getElementById("profileForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const userid = document.getElementById("userid").value.trim();
+    const pic = document.getElementById("pic").files;
+
+    if (!userid) {
+        alert("Error: UserId cannot be empty.");
+    } 
+    else if (isNaN(userid) || Number(userid) <= 0) {
+        alert("Error: UserId must be a positive number.");
+    } 
+    
+    else if (pic.length === 0) {
+        alert("Error: Please select a picture.");
+    } 
+    else {
+        alert("Validation passed successfully!");
+ 
+    }
+});
+</script>
+
+</body>
+</html>

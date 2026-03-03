@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Profile</title>
+</head>
+<body>
+
+<form id="profileForm">
+    <table border="1" width="600" align="center" cellspacing="0" cellpadding="5">
+        <tr>
+            <td colspan="3" align="center">
+                <h2>PERSON PROFILE</h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="20%">Name</td>
+            <td width="70%"><input type="text" id="name" style="width: 90%;"></td>
+            <td width="10%"></td> 
+        </tr>
+
+        <tr>
+            <td>Email</td>
+            <td><input type="text" id="email" style="width: 90%;"></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+                <input type="radio" name="gender" value="Other"> Other
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Date of Birth</td>
+            <td>
+                <input type="text" id="day" size="4"> /
+                <input type="text" id="month" size="4"> /
+                <input type="text" id="year" size="6">
+                <i>(dd/mm/yyyy)</i>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Blood Group</td>
+            <td>
+                <select id="bloodgroup">
+                    <option value="">--Select--</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Degree</td>
+            <td>
+                <input type="checkbox" name="degree" value="SSC"> SSC
+                <input type="checkbox" name="degree" value="HSC"> HSC
+                <input type="checkbox" name="degree" value="BSc"> BSc.
+                <input type="checkbox" name="degree" value="MSc"> MSc.
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Photo</td>
+            <td>
+                <input type="file" id="photo">
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td colspan="3" align="right" height="50">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+<script>
+document.getElementById("profileForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    if(!name){
+        alert("Error: Name cannot be empty.");
+        return;
+    }
+    if(!(name.charAt(0).toLowerCase() >= 'a' && name.charAt(0).toLowerCase() <= 'z')){
+        alert("Error: Name must start with a letter.");
+        return;
+    }
+    for(let i=0; i<name.length; i++){
+        let ch = name.charAt(i);
+        if(!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch=='.' || ch=='-' || ch==' ')){
+            alert("Error: Name can only contain letters, dot (.), dash (-), and space.");
+            return;
+        }
+    }
+    if(!name.includes(" ")){
+        alert("Error: Name must contain at least two words.");
+        return;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    if(!email){
+        alert("Error: Email cannot be empty.");
+        return;
+    }
+    if(email.indexOf("@") <= 0 || email.indexOf(".") <= email.indexOf("@")){
+        alert("Error: Invalid email format. Example: anything@example.com");
+        return;
+    }
+
+    const genderSelected = document.querySelector('input[name="gender"]:checked');
+    if(!genderSelected){
+        alert("Error: Please select a gender.");
+        return;
+    }
+
+    const day = document.getElementById("day").value.trim();
+    const month = document.getElementById("month").value.trim();
+    const year = document.getElementById("year").value.trim();
+
+    if(!day || !month || !year){
+        alert("Error: All Date of Birth fields are required.");
+        return;
+    }
+    const d = parseInt(day,10);
+    const m = parseInt(month,10);
+    const y = parseInt(year,10);
+
+    if(isNaN(d) || d<1 || d>31){
+        alert("Error: Day must be between 1-31.");
+        return;
+    }
+    if(isNaN(m) || m<1 || m>12){
+        alert("Error: Month must be between 1-12.");
+        return;
+    }
+    if(isNaN(y) || y<1900 || y>2016){
+        alert("Error: Year must be between 1900-2016.");
+        return;
+    }
+
+    const blood = document.getElementById("bloodgroup").value;
+    if(!blood){
+        alert("Error: Please select a blood group.");
+        return;
+    }
+
+    const degrees = document.getElementsByName("degree");
+    let degreeSelected = false;
+    for(let i=0;i<degrees.length;i++){
+        if(degrees[i].checked){
+            degreeSelected = true;
+            break;
+        }
+    }
+    if(!degreeSelected){
+        alert("Error: Please select at least one degree.");
+        return;
+    }
+
+    const photo = document.getElementById("photo").files;
+    if(photo.length === 0){
+        alert("Error: Please select a photo.");
+        return;
+    }
+
+    alert("Validation passed successfully!");
+
+});
+</script>
+
+</body>
+</html>

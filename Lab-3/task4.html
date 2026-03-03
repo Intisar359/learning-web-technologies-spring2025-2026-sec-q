@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="dobForm">
+    <fieldset style="width: 200px;">
+        <legend>Date of Birth</legend>
+        <input type="text" id="day" size="2"> / 
+        <input type="text" id="month" size="2"> / 
+        <input type="text" id="year" size="4">
+        <br>
+        <small>dd;mm;yyyy</small>
+    </fieldset>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+document.getElementById("dobForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const day = document.getElementById("day").value.trim();
+    const month = document.getElementById("month").value.trim();
+    const year = document.getElementById("year").value.trim();
+
+    if (!day || !month || !year) {
+        alert("Error: All fields are required.");
+        return;
+    }
+
+    const d = parseInt(day, 10);
+    const m = parseInt(month, 10);
+    const y = parseInt(year, 10);
+
+    if (isNaN(d) || d < 1 || d > 31) {
+        alert("Error: Day must be a number between 1 and 31.");
+    } 
+    else if (isNaN(m) || m < 1 || m > 12) {
+        alert("Error: Month must be a number between 1 and 12.");
+    } 
+    else if (isNaN(y) || y < 1900 || y > 2016) {
+        alert("Error: Year must be a number between 1900 and 2016.");
+    } 
+    else {
+        alert("Validation passed successfully!");
+    }
+});
+</script>
+
+</body>
+</html>

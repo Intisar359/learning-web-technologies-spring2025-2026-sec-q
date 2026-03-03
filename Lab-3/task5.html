@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="degreeForm">
+    <fieldset style="width: 250px;">
+        <legend>Degree</legend>
+        <input type="checkbox" name="degree" value="SSC"> SSC
+        <input type="checkbox" name="degree" value="HSC"> HSC
+        <input type="checkbox" name="degree" value="BSc"> BSc
+    </fieldset>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+document.getElementById("degreeForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let degrees = document.getElementsByName("degree");
+    let selected = false;
+
+    for (let i = 0; i < degrees.length; i++) {
+        if (degrees[i].checked) {
+            selected = true;
+            break;
+        }
+    }
+
+    if (!selected) {
+        alert("Error: Please select at least one degree.");
+    } else {
+        alert("Validation passed successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
