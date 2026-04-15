@@ -1,4 +1,4 @@
-<?php require 'home.php'; ?>
+<?php require 'header.php'; ?>
 <?php
 // Authentication Guard
 if (!isset($_SESSION['current_user'])) {

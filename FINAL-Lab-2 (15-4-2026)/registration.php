@@ -1,4 +1,4 @@
-<?php require 'home.php'; ?>
+<?php require 'header.php'; ?>
 <?php
 $error = '';
 $success = '';
@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_SESSION['users'][$username])) {
         $error = "Username already exists!";
     } else {
-        // Save to our session "database"
+ 
         $_SESSION['users'][$username] = [
             'name' => $name,
             'email' => $email,
             'username' => $username,
-            'password' => $password, // In a real app, always hash passwords!
+            'password' => $password,
             'gender' => $gender,
             'dob' => $dob
         ];
@@ -65,10 +65,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
-<div class="footer">
-    Copyright &copy; 2017
-</div>
 
-</body>
-</html>
-
+<?php require 'footer.php'; ?>

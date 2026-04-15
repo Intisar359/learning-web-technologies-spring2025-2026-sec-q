@@ -1,4 +1,4 @@
-<?php require 'home.php'; ?>
+<?php require 'header.php'; ?>
 <?php
 // If already logged in, redirect to dashboard
 if (isset($_SESSION['current_user'])) {
