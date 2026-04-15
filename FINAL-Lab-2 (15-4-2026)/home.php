@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Initialize our "database" if it doesn't exist yet
+
 if (!isset($_SESSION['users'])) {
     $_SESSION['users'] = [];
 }
@@ -13,12 +13,14 @@ $isLoggedIn = isset($_SESSION['current_user']);
 <head>
     <title>xCompany</title>
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; }
-        .header, .footer { border: 1px solid #000; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+        body { font-family: sans-serif; margin: 0; padding: 20px; }
+        .header, .footer { border: 1px solid; padding: 10px; display: flex; align-items: center; }
+        .header { justify-content: space-between; }
         .footer { justify-content: center; margin-top: 20px; }
-        .logo { color: green; font-size: 24px; font-weight: bold; }
-        .main-container { display: flex; min-height: 400px; border: 1px solid #000; border-top: none; }
-        .sidebar { width: 250px; border-right: 1px solid #000; padding: 10px; }
+        .logo { font-size: 24px; font-weight: bold; }
+        .main-container { display: flex; min-height: 400px; border: 1px solid; border-top: none; }
+        .sidebar { width: 250px; border-right: 1px solid; padding: 10px; }
         .content { padding: 20px; flex-grow: 1; }
         fieldset { width: fit-content; }
     </style>
@@ -26,7 +28,7 @@ $isLoggedIn = isset($_SESSION['current_user']);
 <body>
 
 <div class="header">
-    <div class="logo">X<span style="color:black">Company</span></div>
+    <div class="logo">XCompany</div>
     <div class="nav">
         <?php if ($isLoggedIn): ?>
             Logged in as <a href="view_profile.php"><?= htmlspecialchars($_SESSION['current_user']['name']) ?></a> | 
@@ -38,8 +40,15 @@ $isLoggedIn = isset($_SESSION['current_user']);
         <?php endif; ?>
     </div>
 </div>
-<div class="footer">
-    Copyright © 2017
+
+<div class="main-container">
+    <div class="content">
+        </div>
 </div>
+
+<div class="footer">
+    Copyright &copy; 2017
+</div>
+
 </body>
 </html>
