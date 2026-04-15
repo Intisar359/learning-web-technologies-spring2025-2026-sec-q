@@ -34,7 +34,7 @@ $isLoggedIn = isset($_SESSION['current_user']);
             Logged in as <a href="view_profile.php"><?= htmlspecialchars($_SESSION['current_user']['name']) ?></a> | 
             <a href="logout.php">Logout</a>
         <?php else: ?>
-            <a href="index.php">Home</a> | 
+            <a href="home.php">Home</a> | 
             <a href="login.php">Login</a> | 
             <a href="registration.php">Registration</a>
         <?php endif; ?>
@@ -46,9 +46,5 @@ $isLoggedIn = isset($_SESSION['current_user']);
         </div>
 </div>
 
-<div class="footer">
-    Copyright &copy; 2017
-</div>
-
-</body>
 </html>
+<?php require 'footer.php'; ?>
