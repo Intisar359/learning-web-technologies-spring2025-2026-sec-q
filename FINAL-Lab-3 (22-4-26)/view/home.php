@@ -29,6 +29,8 @@
         
         <a href='../controller/logout.php'>Logout</a>
         <br><br>
+        <br>
+        <br>
 
         <table border=1>
             <tr>
