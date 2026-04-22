@@ -13,6 +13,8 @@ $user = $_SESSION['current_user'];
         <h3>Account</h3>
         <hr>
         <ul>
+            <br>
+            <br>
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="viewprofile.php">View Profile</a></li>
             <li><a href="editprofile.php">Edit Profile</a></li>
