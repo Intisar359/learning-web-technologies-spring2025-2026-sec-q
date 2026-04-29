@@ -3,8 +3,8 @@
     if(isset($_REQUEST['submit'])){
         $id = $_REQUEST['id'];
         $name = $_REQUEST['name'];
-        $quantity = $_REQUEST['quantity'];
 
+        $quantity = $_REQUEST['quantity'];
 
         foreach($_SESSION['products'] as $key => $product){
             if($product['id'] == $id){
@@ -14,7 +14,9 @@
             }
         }
         header('location: ../view/home.php');
+        exit();
     } else {
         header('location: ../view/home.php');
+        exit();
     }
 ?>

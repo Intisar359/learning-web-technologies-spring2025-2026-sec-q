@@ -1,14 +1,20 @@
 <?php
     session_start();
-    if(!isset($_COOKIE['status'])){ header('location: login.php'); }
+
+    if(!isset($_SESSION['status'])){ 
+        header('location: login.php'); 
+        exit();
+    }
 
     $products = $_SESSION['products'];
     $id = $_GET['id'];
     $current_product = [];
 
+
     foreach($products as $p){
         if($id == $p['id']){
             $current_product = $p;
+            break;
         }
     }
 ?>

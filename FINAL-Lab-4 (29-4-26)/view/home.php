@@ -1,24 +1,14 @@
-
-    <?php
+<?php
     session_start();
-    
+    require_once('../model/productModel.php'); 
 
     if(!isset($_SESSION['status'])){
         header('location: login.php');
         exit();
     }
 
-
-
-    if(!isset($_SESSION['products'])){
-        $_SESSION['products'] = [
-            ['id'=>1, 'name'=>'Laptop', 'quantity'=>'50000'],
-            ['id'=>2, 'name'=>'Mouse', 'quantity'=>'500'],
-            ['id'=>3, 'name'=>'Keyboard', 'quantity'=>'1500']
-        ];
-    }
-
-    $products = $_SESSION['products'];
+    
+    $products = getAllProducts(); 
     $userType = $_SESSION['user_type'];
 ?>
 <!DOCTYPE html>
@@ -30,13 +20,11 @@
         <h1>Welcome Home, <?=$_SESSION['current_user']?> (<?=$userType?>)!</h1>
         
         <?php if($userType == 'Admin'){ ?>
-            <a href='add_product.html'>Create Product</a> |
+            <a href='add_product.php'>Create Product</a> |
         <?php } ?>
         
         <a href='../controller/logout.php'>Logout</a>
         <br><br>
-        <br>
-        <br>
 
         <table border=1>
             <tr>

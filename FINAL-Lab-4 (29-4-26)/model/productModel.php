@@ -3,9 +3,11 @@ require_once('db.php');
 
 function addProduct($product){
     $con = getConnection();
-    $sql = "INSERT INTO products (name, price) VALUES ('{$product['name']}', '{$product['price']}')";
+    // Inserting the name and quantity into the database
+    $sql = "INSERT INTO products (name, quantity) VALUES ('{$product['name']}', '{$product['quantity']}')";
     return mysqli_query($con, $sql);
 }
+
 
 function getAllProducts(){
     $con = getConnection();

@@ -1,20 +1,38 @@
 <?php
     session_start();
+    require_once('../model/productModel.php'); 
+    // Security check
+    if(!isset($_SESSION['status'])){
+        header('location: ../view/login.php');
+        exit();
+    }
+
     if(isset($_REQUEST['submit'])){
-        $name = $_REQUEST['name'];
-        $quantity = $_REQUEST['quantity'];
+        $name = trim($_REQUEST['name']);
+        $quantity = trim($_REQUEST['quantity']);
 
         if($name == "" || $quantity == ""){
-            echo "Fields cannot be empty!";
+            $_SESSION['error'] = "Fields cannot be empty!";
+            header('location: ../view/add_product.php');
+            exit();
         } else {
-
-            $new_id = rand(10, 1000); 
-            $new_product = ['id' => $new_id, 'name' => $name, 'quantity' => $quantity];
             
-            $_SESSION['products'][] = $new_product;
-            header('location: ../view/home.php');
+           
+            $product = ['name' => $name, 'quantity' => $quantity];
+            $status = addProduct($product); 
+
+            if($status){
+                // Success! Send them back home.
+                header('location: ../view/home.php');
+                exit();
+            } else {
+                $_SESSION['error'] = "Database error! Could not add product.";
+                header('location: ../view/add_product.php');
+                exit();
+            }
         }
     } else {
-        header('location: ../view/add_product.html');
+        header('location: ../view/add_product.php');
+        exit();
     }
 ?>

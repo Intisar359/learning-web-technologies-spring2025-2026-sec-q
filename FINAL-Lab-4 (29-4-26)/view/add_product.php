@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['status'])){
+        header('location: login.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +15,13 @@
         <a href='home.php'>Back</a> |
         <a href='../controller/logout.php'>Logout</a>
         <br><br>
+
+        <?php 
+            if(isset($_SESSION['error'])){
+                echo "<p style='color: red;'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']); 
+            }
+        ?>
 
         <form method="post" action="../controller/addProductCheck.php">
             Product Name: <input type="text" name="name" value=""/> <br>
